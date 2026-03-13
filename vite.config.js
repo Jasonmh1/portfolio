@@ -3,13 +3,8 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  optimizeDeps: {
-    include: ['@vercel/analytics'],
-  },
-  build: {
-    commonjsOptions: {
-      transformMixedEsModules: true,
-    },
-  },
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
 })
