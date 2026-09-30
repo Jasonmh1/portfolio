@@ -21,7 +21,7 @@ const Star = () => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 24 24"
-		className="size-4 fill-white"
+		className="size-4 fill-cyan-300"
 		aria-hidden="true"
 	>
 		<path d="M12 2.25l2.955 6.03 6.645.967-4.8 4.677 1.133 6.606L12 17.77l-5.933 3.137 1.133-6.606-4.8-4.677 6.645-.967L12 2.25z" />
@@ -43,7 +43,7 @@ const Reviews = () => (
 					return (
 						<article
 							key={`review-${index + 1}`}
-							className="group relative flex min-h-64 flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] p-6 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/5.5 md:p-7"
+							className="group relative flex min-h-64 flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] p-6 shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-white/5.5 md:p-7"
 						>
 							<div className="mb-5 flex items-center justify-between gap-4">
 								<span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
