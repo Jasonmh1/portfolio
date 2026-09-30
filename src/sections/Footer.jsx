@@ -6,7 +6,9 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-container">
                 <div className="flex flex-col justify-center">
-                    <p>Terms & Conditions</p>
+                    <a href="/terms" className="text-center transition-colors hover:text-white md:text-start">
+                        Terms & Conditions
+                    </a>
                 </div>
                 <div className="socials">
                     {socialImgs.map((socialImg, index) => (

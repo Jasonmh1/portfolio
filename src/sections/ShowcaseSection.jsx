@@ -49,7 +49,7 @@ const AppShowcase = () => {
                 <div className="showcaselayout">
                     <div ref={rydeRef} className="first-project-wrapper">
                         <div className="image-wrapper">
-                            <img src="/images/scleras.webp" alt="scleras" />
+                            <img src="/images/scleras.webp" alt="scleras" loading="lazy" decoding="async" />
                         </div>
                         <div className="text-content">
                             <h2>
@@ -67,6 +67,8 @@ const AppShowcase = () => {
                                 <img
                                     src="/images/betta2.png"
                                     alt="betta"
+                                    loading="lazy"
+                                    decoding="async"
 
                                 />
                             </div>
@@ -75,7 +77,7 @@ const AppShowcase = () => {
 
                         <div className="project" ref={ycDirectoryRef}>
                             <div className="image-wrapper bg-[#]">
-                                <img src="/images/nooby2.png" alt="nooby" />
+                                <img src="/images/nooby2.png" alt="nooby" loading="lazy" decoding="async" />
                             </div>
                             <h2 className='text-center '>Nooby Studios</h2>
                         </div>

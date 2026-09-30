@@ -1,21 +1,47 @@
-import { useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 import TitleHeader from "../components/TitleHeader";
-import ContactExperience from "../components/Contact/ContactExperience.jsx";
+
+const ContactExperience = lazy(() => import("../components/Contact/ContactExperience.jsx"));
 
 const Contact = () => {
     const formRef = useRef(null);
+    const experienceRef = useRef(null);
     const [loading, setLoading] = useState(false);
+    const [showExperience, setShowExperience] = useState(false);
     const [form, setForm] = useState({
         name: "",
         email: "",
         message: "",
     });
 
+    useEffect(() => {
+        const target = experienceRef.current;
+        if (!target) return undefined;
+
+        if (!("IntersectionObserver" in window)) {
+            setShowExperience(true);
+            return undefined;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setShowExperience(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: "300px 0px" }
+        );
+
+        observer.observe(target);
+        return () => observer.disconnect();
+    }, []);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
+        setForm((currentForm) => ({ ...currentForm, [name]: value }));
     };
 
     const handleSubmit = async (e) => {
@@ -44,7 +70,7 @@ const Contact = () => {
             <div className="w-full h-full md:px-10 px-5">
                 <TitleHeader
                     title="Get in Touch – Let’s Connect"
-                    sub="💬 Have questions or ideas? Let’s talk! 🚀"
+                    sub="Have questions or ideas? Let’s talk."
                 />
                 <div className="grid-12-cols mt-16">
                     <div className="xl:col-span-5">
@@ -62,7 +88,7 @@ const Contact = () => {
                                         name="name"
                                         value={form.name}
                                         onChange={handleChange}
-                                        placeholder="What’s your good name?"
+                                        placeholder="What’s your name?"
                                         required
                                     />
                                 </div>
@@ -107,9 +133,21 @@ const Contact = () => {
                             </form>
                         </div>
                     </div>
-                    <div className="xl:col-span-7 min-h-96">
+                    <div ref={experienceRef} className="xl:col-span-7 min-h-96">
                         <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
-                            <ContactExperience />
+                            {showExperience ? (
+                                <Suspense
+                                    fallback={(
+                                        <div className="flex min-h-96 items-center justify-center text-sm text-white/70">
+                                            Loading interactive scene…
+                                        </div>
+                                    )}
+                                >
+                                    <ContactExperience />
+                                </Suspense>
+                            ) : (
+                                <div className="min-h-96" aria-hidden="true" />
+                            )}
                         </div>
                     </div>
                 </div>

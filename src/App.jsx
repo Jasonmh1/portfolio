@@ -1,22 +1,26 @@
-import Hero from './sections/Hero.jsx'
-import AnimatedCounter from "./components/AnimatedCounter.jsx";
-import ShowcaseSection from "./sections/ShowcaseSection.jsx";
-import NavBar from "./components/NavBar.jsx";
-import FeatureCards from "./sections/FeatureCards.jsx";
-import ExperienceSection from "./sections/ExperienceSection.jsx";
-import Contact from "./sections/Contact.jsx"
-import Footer from "./sections/Footer.jsx"
+import { lazy, Suspense } from "react";
+import ParticleBackground from "./components/ParticleBackground.jsx";
+const PortfolioPage = lazy(() => import("./pages/PortfolioPage.jsx"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService.jsx"));
+
 const App = () => {
+    const isTermsPage = window.location.pathname.replace(/\/+$/, "") === "/terms";
+    const Page = isTermsPage ? TermsOfService : PortfolioPage;
+
     return (
-       <>
-           <NavBar />
-       <Hero />
-        <ShowcaseSection />
-           <FeatureCards />
-           <ExperienceSection />
-           <Contact/>
-          <Footer/>
-       </>
-    )
-}
+        <>
+            <ParticleBackground />
+            <Suspense
+                fallback={(
+                    <main className="relative z-10 flex min-h-screen items-center justify-center text-sm text-slate-300">
+                        Loading page…
+                    </main>
+                )}
+            >
+                <Page />
+            </Suspense>
+        </>
+    );
+};
+
 export default App

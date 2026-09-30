@@ -15,6 +15,17 @@ body {
     font-family: "Mona Sans", sans-serif;
 }
 
+.particle-background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    pointer-events: none;
+    background: #000;
+    filter: blur(2px);
+    transform: scale(1.01);
+}
+
 section {
     width: 100dvw;
 }
@@ -122,10 +133,10 @@ section {
         }
 
         nav.desktop {
-            @apply hidden lg:flex items-center;
+            @apply hidden md:flex items-center;
 
             ul {
-                @apply flex space-x-8;
+                @apply flex space-x-4 xl:space-x-8;
 
                 li {
                     @apply text-white-50 relative;

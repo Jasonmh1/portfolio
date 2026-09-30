@@ -25,20 +25,16 @@ const Hero = () => {
     );
     return (
         <section id="hero" className="relative overflow-hidden">
-            <div className="absolute top-0 left-0 z-10">
-            <img src="/images/bg.png" alt="background" />
-            </div>
-
-            <div className="hero-layout">
+            <div className="hero-layout flex-col-reverse md:flex-row">
                 {/*left: hero content */}
-                <header className="flex-col justify-center md:w-full w-screen md:px-20 px-5 ">
+                <header className="relative z-10 flex-col justify-center md:w-3/5 w-screen md:px-20 px-5">
                     <div className="flex flex-col gap-7">
                         <div className="hero-text">
                             <h1> Shaping
                                 <span className="slide">
                                     <span className="wrapper">
-                                        {words.map((word) => (
-                                             <span key={word.text} className="flex items-center md:gap-3 gap-1 pb-2">
+                                        {words.map((word, index) => (
+                                            <span key={`${word.text}-${index}`} className="flex items-center md:gap-3 gap-1 pb-2">
                                                  <img
                                                     src={word.imgPath}
                                                     alt={word.text}
@@ -64,12 +60,27 @@ const Hero = () => {
                     text="Check out my work"/>
                 </header>
 
-                {/*right: 3d model*/}
-                <div className=' w-lvw'>
-                    <div className="Hero-3d-layout">
-
+                <figure className="relative z-10 mt-8 flex flex-col items-center md:mt-0 md:mr-16 md:w-2/5">
+                    <div className="relative rounded-full border border-white/20 bg-white/4 p-3 shadow-[0_0_70px_rgba(255,255,255,0.12)]">
+                        <div
+                            className="absolute inset-0 scale-110 rounded-full border border-white/10"
+                            aria-hidden="true"
+                        />
+                        <img
+                            src="/images/pfp.png"
+                            alt="Jasonmh profile picture"
+                            className="relative size-48 rounded-full border-2 border-white/60 object-cover object-center transition-transform duration-500 hover:scale-[1.03] md:size-64 xl:size-72"
+                        />
                     </div>
-                </div>
+                    <figcaption className="mt-6 flex flex-col items-center gap-2 text-center">
+                        <span className="text-2xl font-semibold tracking-wide text-white md:text-3xl">
+                            Jasonmh
+                        </span>
+                        <span className="text-xs font-medium uppercase tracking-[0.24em] text-slate-400 md:text-sm">
+                            Developer · Project Manager
+                        </span>
+                    </figcaption>
+                </figure>
             </div>
             <AnimatedCounter />
         </section>
